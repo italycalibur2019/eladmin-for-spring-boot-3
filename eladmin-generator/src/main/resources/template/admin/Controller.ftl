@@ -15,7 +15,7 @@
 */
 package ${package}.rest;
 
-import me.zhengjie.annotation.Log;
+import com.italycalibur.ciallo.domain.annotation.Log;
 import ${package}.domain.${className};
 import ${package}.service.${className}Service;
 import ${package}.service.dto.${className}QueryCriteria;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.*;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
-import me.zhengjie.utils.PageResult;
+import com.italycalibur.ciallo.domain.utils.PageResult;
 import ${package}.service.dto.${className}Dto;
 
 /**
