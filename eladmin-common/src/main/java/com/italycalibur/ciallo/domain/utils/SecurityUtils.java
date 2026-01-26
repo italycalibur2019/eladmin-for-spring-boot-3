@@ -22,7 +22,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import com.italycalibur.ciallo.domain.utils.enums.DataScopeEnum;
+import com.italycalibur.ciallo.domain.enums.DataScopeEnum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 

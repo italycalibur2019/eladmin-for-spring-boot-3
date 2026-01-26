@@ -25,7 +25,7 @@ import com.italycalibur.ciallo.domain.modules.system.service.dto.RoleSmallDto;
 import com.italycalibur.ciallo.domain.modules.system.service.dto.UserDto;
 import com.italycalibur.ciallo.domain.utils.CacheKey;
 import com.italycalibur.ciallo.domain.utils.RedisUtils;
-import com.italycalibur.ciallo.domain.utils.enums.DataScopeEnum;
+import com.italycalibur.ciallo.domain.enums.DataScopeEnum;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.concurrent.TimeUnit;

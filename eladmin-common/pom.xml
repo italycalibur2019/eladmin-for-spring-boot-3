@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <properties>
-        <hutool.version>5.8.35</hutool.version>
+        <hutool.version>5.8.43</hutool.version>
     </properties>
 
     <artifactId>eladmin-common</artifactId>

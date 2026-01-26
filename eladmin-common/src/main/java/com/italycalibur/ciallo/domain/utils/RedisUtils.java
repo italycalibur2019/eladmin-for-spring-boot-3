@@ -104,7 +104,7 @@ public class RedisUtils {
         ScanOptions options = ScanOptions.scanOptions().match(pattern).build();
         RedisConnectionFactory factory = redisTemplate.getConnectionFactory();
         RedisConnection rc = Objects.requireNonNull(factory).getConnection();
-        Cursor<byte[]> cursor = rc.scan(options);
+        Cursor<byte[]> cursor = rc.keyCommands().scan(options);
         List<String> result = new ArrayList<>();
         while (cursor.hasNext()) {
             result.add(new String(cursor.next()));
@@ -129,7 +129,7 @@ public class RedisUtils {
         ScanOptions options = ScanOptions.scanOptions().match(patternKey).build();
         RedisConnectionFactory factory = redisTemplate.getConnectionFactory();
         RedisConnection rc = Objects.requireNonNull(factory).getConnection();
-        Cursor<byte[]> cursor = rc.scan(options);
+        Cursor<byte[]> cursor = rc.keyCommands().scan(options);
         List<String> result = new ArrayList<>(size);
         int tmpIndex = 0;
         int fromIndex = page * size;
@@ -205,7 +205,7 @@ public class RedisUtils {
         ScanOptions options = ScanOptions.scanOptions().match(pattern).build();
         try (Cursor<byte[]> cursor = redisTemplate.executeWithStickyConnection(
                 (RedisCallback<Cursor<byte[]>>) connection -> (Cursor<byte[]>) new ConvertingCursor<>(
-                        connection.scan(options), redisTemplate.getKeySerializer()::deserialize))) {
+                        connection.keyCommands().scan(options), redisTemplate.getKeySerializer()::deserialize))) {
             while (cursor.hasNext()) {
                 redisTemplate.delete(cursor.next());
             }

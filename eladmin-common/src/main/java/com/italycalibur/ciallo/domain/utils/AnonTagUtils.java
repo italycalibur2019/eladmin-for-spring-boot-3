@@ -16,7 +16,7 @@
 package com.italycalibur.ciallo.domain.utils;
 
 import com.italycalibur.ciallo.domain.annotation.rest.AnonymousAccess;
-import com.italycalibur.ciallo.domain.utils.enums.RequestMethodEnum;
+import com.italycalibur.ciallo.domain.enums.RequestMethodEnum;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.HandlerMethod;

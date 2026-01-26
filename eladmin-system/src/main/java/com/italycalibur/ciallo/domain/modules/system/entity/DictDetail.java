@@ -19,8 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.italycalibur.ciallo.domain.base.BaseEntity;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**

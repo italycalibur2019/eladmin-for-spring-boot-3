@@ -23,7 +23,7 @@ import org.apache.commons.codec.digest.MurmurHash3;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.Cache;
-import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -51,7 +51,7 @@ import java.util.Map;
 @Configuration
 @EnableCaching
 @AutoConfigureBefore(RedisAutoConfiguration.class)
-public class RedisConfiguration extends CachingConfigurerSupport {
+public class RedisConfiguration implements CachingConfigurer {
 
     // 自动识别json对象白名单配置（仅允许解析的包名，范围越小越安全）
     private static final String[] WHITELIST_STR = {"com.italycalibur.ciallo" };

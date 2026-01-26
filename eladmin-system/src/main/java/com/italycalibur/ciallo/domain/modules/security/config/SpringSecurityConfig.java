@@ -20,10 +20,9 @@ import com.italycalibur.ciallo.domain.modules.security.component.JwtAuthenticati
 import com.italycalibur.ciallo.domain.modules.security.component.TokenConfigurer;
 import com.italycalibur.ciallo.domain.modules.security.component.TokenProvider;
 import lombok.RequiredArgsConstructor;
-import com.italycalibur.ciallo.domain.modules.security.component.*;
 import com.italycalibur.ciallo.domain.modules.security.service.OnlineUserService;
 import com.italycalibur.ciallo.domain.utils.AnonTagUtils;
-import com.italycalibur.ciallo.domain.utils.enums.RequestMethodEnum;
+import com.italycalibur.ciallo.domain.enums.RequestMethodEnum;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

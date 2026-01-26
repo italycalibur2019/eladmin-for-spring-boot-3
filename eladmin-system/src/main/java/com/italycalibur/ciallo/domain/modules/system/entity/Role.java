@@ -20,11 +20,11 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.italycalibur.ciallo.domain.base.BaseEntity;
-import com.italycalibur.ciallo.domain.utils.enums.DataScopeEnum;
+import com.italycalibur.ciallo.domain.enums.DataScopeEnum;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;

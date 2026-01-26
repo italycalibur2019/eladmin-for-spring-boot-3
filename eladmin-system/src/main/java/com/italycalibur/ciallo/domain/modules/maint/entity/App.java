@@ -21,7 +21,7 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.Getter;
 import lombok.Setter;
 import com.italycalibur.ciallo.domain.base.BaseEntity;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 /**
