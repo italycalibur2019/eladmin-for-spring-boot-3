@@ -15,8 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import com.italycalibur.ciallo.domain.entity.GenConfig;
 import com.italycalibur.ciallo.domain.service.GenConfigService;
@@ -32,19 +32,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/genConfig")
-@Api(tags = "系统：代码生成器配置管理")
+@Tag(name = "系统：代码生成器配置管理")
 public class GenConfigController {
 
     private final GenConfigService genConfigService;
 
-    @ApiOperation("查询")
+    @Operation(description = "查询")
     @GetMapping(value = "/{tableName}")
     public ResponseEntity<GenConfig> queryGenConfig(@PathVariable String tableName){
         return new ResponseEntity<>(genConfigService.find(tableName), HttpStatus.OK);
     }
 
     @PutMapping
-    @ApiOperation("修改")
+    @Operation(description = "修改")
     public ResponseEntity<Object> updateGenConfig(@Validated @RequestBody GenConfig genConfig){
         return new ResponseEntity<>(genConfigService.update(genConfig.getTableName(), genConfig),HttpStatus.OK);
     }

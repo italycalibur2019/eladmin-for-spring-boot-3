@@ -15,9 +15,14 @@
  */
 package com.italycalibur.ciallo.domain.utils;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.PropertiesConfiguration;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * sql字段转java
@@ -45,8 +50,10 @@ public class ColUtil {
      */
     public static PropertiesConfiguration getConfig() {
         try {
-            return new PropertiesConfiguration("gen.properties");
-        } catch (ConfigurationException e) {
+            PropertiesConfiguration config = new PropertiesConfiguration();
+            config.read(new FileReader("gen.properties"));
+            return config;
+        } catch (ConfigurationException | IOException e) {
             log.error(e.getMessage(), e);
         }
         return null;
