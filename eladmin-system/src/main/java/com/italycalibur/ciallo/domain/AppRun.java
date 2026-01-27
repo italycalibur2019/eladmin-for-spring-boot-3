@@ -16,6 +16,7 @@
 package com.italycalibur.ciallo.domain;
 
 import com.italycalibur.ciallo.domain.annotation.rest.AnonymousGetMapping;
+import com.italycalibur.ciallo.domain.base.BaseRepositorySupport;
 import com.italycalibur.ciallo.domain.utils.SpringBeanHolder;
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +44,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
+@EnableJpaRepositories(repositoryBaseClass = BaseRepositorySupport.class)
 public class AppRun {
 
     public static void main(String[] args) {

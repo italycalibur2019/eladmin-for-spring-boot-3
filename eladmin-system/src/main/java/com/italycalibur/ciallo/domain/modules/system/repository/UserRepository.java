@@ -15,11 +15,12 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.repository;
 
+import com.italycalibur.ciallo.domain.base.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.system.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +29,7 @@ import java.util.Set;
  * @author Zheng Jie
  * @date 2018-11-22
  */
-public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
+public interface UserRepository extends BaseRepository<User, Long>, JpaSpecificationExecutor<User> {
 
     /**
      * 根据用户名查询

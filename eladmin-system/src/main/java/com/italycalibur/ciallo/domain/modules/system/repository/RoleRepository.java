@@ -15,8 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.repository;
 
+import com.italycalibur.ciallo.domain.base.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.system.entity.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,7 +28,7 @@ import java.util.Set;
  * @author Zheng Jie
  * @date 2018-12-03
  */
-public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificationExecutor<Role> {
+public interface RoleRepository extends BaseRepository<Role, Long>, JpaSpecificationExecutor<Role> {
 
     /**
      * 根据名称查询

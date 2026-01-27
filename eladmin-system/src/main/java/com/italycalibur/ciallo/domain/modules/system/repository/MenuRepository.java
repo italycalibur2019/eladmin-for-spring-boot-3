@@ -15,11 +15,12 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.repository;
 
+import com.italycalibur.ciallo.domain.base.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.system.entity.Menu;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +29,7 @@ import java.util.Set;
  * @author Zheng Jie
  * @date 2018-12-17
  */
-public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificationExecutor<Menu> {
+public interface MenuRepository extends BaseRepository<Menu, Long>, JpaSpecificationExecutor<Menu> {
 
     /**
      * 根据菜单标题查询
