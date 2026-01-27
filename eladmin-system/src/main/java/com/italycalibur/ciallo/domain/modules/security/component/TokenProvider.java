@@ -31,6 +31,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import jakarta.servlet.http.HttpServletRequest;
+
+import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -60,8 +62,8 @@ public class TokenProvider implements InitializingBean {
         byte[] keyBytes = Decoders.BASE64.decode(properties.getBase64Secret());
         this.signingKey = Keys.hmacShaKeyFor(keyBytes);
         // 初始化 JwtParser
-        jwtParser = Jwts.parserBuilder()
-                .setSigningKey(signingKey) // 使用预生成的签名密钥
+        jwtParser = Jwts.parser()
+                .verifyWith((SecretKey) signingKey)// 使用预生成的签名密钥
                 .build();
     }
 
@@ -82,11 +84,11 @@ public class TokenProvider implements InitializingBean {
         // 直接调用 Jwts.builder() 创建新实例
         return Jwts.builder()
                 // 设置自定义 Claims
-                .setClaims(claims)
+                .claims(claims)
                 // 设置主题
-                .setSubject(user.getUsername())
+                .subject(user.getUsername())
                 // 使用预生成的签名密钥和算法签名
-                .signWith(signingKey, SignatureAlgorithm.HS512)
+                .signWith(signingKey)
                 .compact();
     }
 
@@ -104,8 +106,8 @@ public class TokenProvider implements InitializingBean {
 
     public Claims getClaims(String token) {
         return jwtParser
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     /**

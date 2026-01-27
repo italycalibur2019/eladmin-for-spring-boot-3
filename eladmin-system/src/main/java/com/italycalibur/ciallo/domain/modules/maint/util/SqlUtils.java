@@ -20,7 +20,7 @@ import com.alibaba.druid.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import com.italycalibur.ciallo.domain.modules.maint.enums.DataTypeEnum;
 import com.italycalibur.ciallo.domain.utils.CloseUtil;
-import jakarta.sql.DataSource;
+import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.File;
 import java.nio.charset.StandardCharsets;

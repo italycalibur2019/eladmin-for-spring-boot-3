@@ -39,13 +39,13 @@ import ${package}.service.dto.${className}Dto;
 **/
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "${apiAlias}")
+@Tag(name = "${apiAlias}")
 @RequestMapping("/api/${changeClassName}")
 public class ${className}Controller {
 
     private final ${className}Service ${changeClassName}Service;
 
-    @ApiOperation("导出数据")
+    @Operation(description = "导出数据")
     @GetMapping(value = "/download")
     @PreAuthorize("@el.check('${changeClassName}:list')")
     public void export${className}(HttpServletResponse response, ${className}QueryCriteria criteria) throws IOException {
@@ -53,7 +53,7 @@ public class ${className}Controller {
     }
 
     @GetMapping
-    @ApiOperation("查询${apiAlias}")
+    @Operation(description = "查询${apiAlias}")
     @PreAuthorize("@el.check('${changeClassName}:list')")
     public ResponseEntity<PageResult<${className}Dto>> query${className}(${className}QueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(${changeClassName}Service.queryAll(criteria,pageable),HttpStatus.OK);
@@ -61,7 +61,7 @@ public class ${className}Controller {
 
     @PostMapping
     @Log("新增${apiAlias}")
-    @ApiOperation("新增${apiAlias}")
+    @Operation(description = "新增${apiAlias}")
     @PreAuthorize("@el.check('${changeClassName}:add')")
     public ResponseEntity<Object> create${className}(@Validated @RequestBody ${className} resources){
         ${changeClassName}Service.create(resources);
@@ -70,7 +70,7 @@ public class ${className}Controller {
 
     @PutMapping
     @Log("修改${apiAlias}")
-    @ApiOperation("修改${apiAlias}")
+    @Operation(description = "修改${apiAlias}")
     @PreAuthorize("@el.check('${changeClassName}:edit')")
     public ResponseEntity<Object> update${className}(@Validated @RequestBody ${className} resources){
         ${changeClassName}Service.update(resources);
@@ -79,7 +79,7 @@ public class ${className}Controller {
 
     @DeleteMapping
     @Log("删除${apiAlias}")
-    @ApiOperation("删除${apiAlias}")
+    @Operation(description = "删除${apiAlias}")
     @PreAuthorize("@el.check('${changeClassName}:del')")
     public ResponseEntity<Object> delete${className}(@ApiParam(value = "传ID数组[]") @RequestBody ${pkColumnType}[] ids) {
         ${changeClassName}Service.deleteAll(ids);

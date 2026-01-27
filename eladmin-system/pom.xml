@@ -62,7 +62,7 @@
         <dependency>
             <groupId>ch.ethz.ganymed</groupId>
             <artifactId>ganymed-ssh2</artifactId>
-            <version>262</version>
+            <version>build210</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/com.github.mwiede/jsch -->
         <dependency>

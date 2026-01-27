@@ -15,7 +15,7 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import com.italycalibur.ciallo.domain.annotation.Query;
 
@@ -26,11 +26,11 @@ import com.italycalibur.ciallo.domain.annotation.Query;
 @Data
 public class DictDetailQueryCriteria {
 
-    @ApiModelProperty(value = "字典标签")
+    @Schema(description = "字典标签")
     @Query(type = Query.Type.INNER_LIKE)
     private String label;
 
-    @ApiModelProperty(value = "字典名称")
+    @Schema(description = "字典名称")
     @Query(propName = "name",joinName = "dict")
     private String dictName;
 }

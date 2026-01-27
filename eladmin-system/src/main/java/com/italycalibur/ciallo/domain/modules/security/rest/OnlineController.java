@@ -15,8 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.modules.security.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import com.italycalibur.ciallo.domain.modules.security.service.OnlineUserService;
 import com.italycalibur.ciallo.domain.modules.security.service.dto.OnlineUserDto;
@@ -37,26 +37,26 @@ import java.util.Set;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth/online")
-@Api(tags = "系统：在线用户管理")
+@Tag(name = "系统：在线用户管理")
 public class OnlineController {
 
     private final OnlineUserService onlineUserService;
 
-    @ApiOperation("查询在线用户")
+    @Operation(description = "查询在线用户")
     @GetMapping
     @PreAuthorize("@el.check()")
     public ResponseEntity<PageResult<OnlineUserDto>> queryOnlineUser(String username, Pageable pageable){
         return new ResponseEntity<>(onlineUserService.getAll(username, pageable),HttpStatus.OK);
     }
 
-    @ApiOperation("导出数据")
+    @Operation(description = "导出数据")
     @GetMapping(value = "/download")
     @PreAuthorize("@el.check()")
     public void exportOnlineUser(HttpServletResponse response, String username) throws IOException {
         onlineUserService.download(onlineUserService.getAll(username), response);
     }
 
-    @ApiOperation("踢出用户")
+    @Operation(description = "踢出用户")
     @DeleteMapping
     @PreAuthorize("@el.check()")
     public ResponseEntity<Object> deleteOnlineUser(@RequestBody Set<String> keys) throws Exception {
