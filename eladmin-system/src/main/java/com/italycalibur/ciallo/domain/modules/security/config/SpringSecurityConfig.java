@@ -15,14 +15,14 @@
  */
 package com.italycalibur.ciallo.domain.modules.security.config;
 
+import com.italycalibur.ciallo.domain.enums.RequestMethodEnum;
 import com.italycalibur.ciallo.domain.modules.security.component.JwtAccessDeniedHandler;
 import com.italycalibur.ciallo.domain.modules.security.component.JwtAuthenticationEntryPoint;
 import com.italycalibur.ciallo.domain.modules.security.component.TokenFilter;
 import com.italycalibur.ciallo.domain.modules.security.component.TokenProvider;
-import lombok.RequiredArgsConstructor;
 import com.italycalibur.ciallo.domain.modules.security.service.OnlineUserService;
 import com.italycalibur.ciallo.domain.utils.AnonTagUtils;
-import com.italycalibur.ciallo.domain.enums.RequestMethodEnum;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +38,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
-import java.util.*;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Zheng Jie
@@ -98,10 +100,10 @@ public class SpringSecurityConfig {
                                 "/webSocket/**"
                         ).permitAll()
                         // swagger 文档
-                        .requestMatchers("/swagger-ui.html").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/swagger-resources/**").permitAll()
                         .requestMatchers("/webjars/**").permitAll()
-                        .requestMatchers("/*/api-docs").permitAll()
+                        .requestMatchers("/*/api-docs/**").permitAll()
                         // 文件
                         .requestMatchers("/avatar/**").permitAll()
                         .requestMatchers("/file/**").permitAll()

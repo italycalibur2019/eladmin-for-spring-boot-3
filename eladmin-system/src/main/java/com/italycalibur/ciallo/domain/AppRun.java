@@ -15,10 +15,10 @@
  */
 package com.italycalibur.ciallo.domain;
 
-import io.swagger.v3.oas.annotations.Hidden;
-import lombok.extern.slf4j.Slf4j;
 import com.italycalibur.ciallo.domain.annotation.rest.AnonymousGetMapping;
 import com.italycalibur.ciallo.domain.utils.SpringBeanHolder;
+import io.swagger.v3.oas.annotations.Hidden;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.ApplicationPidFileWriter;
@@ -53,7 +53,7 @@ public class AppRun {
         String port = context.getEnvironment().getProperty("server.port");
         log.info("---------------------------------------------");
         log.info("Local: http://localhost:{}", port);
-        log.info("Swagger: http://localhost:{}/doc.html", port);
+        log.info("Swagger: http://localhost:{}/swagger-ui.html", port);
         log.info("---------------------------------------------");
     }
 

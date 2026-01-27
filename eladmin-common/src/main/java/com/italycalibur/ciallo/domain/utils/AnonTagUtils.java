@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.web.util.pattern.PathPattern;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Zheng Jie
@@ -54,27 +56,25 @@ public class AnonTagUtils {
             if (null != anonymousAccess) {
                 List<RequestMethod> requestMethods = new ArrayList<>(infoEntry.getKey().getMethodsCondition().getMethods());
                 RequestMethodEnum request = RequestMethodEnum.find(requestMethods.isEmpty() ? RequestMethodEnum.ALL.getType() : requestMethods.get(0).name());
-                if (infoEntry.getKey().getPatternsCondition()!=null) {
-                    switch (Objects.requireNonNull(request)) {
-                        case GET:
-                            get.addAll(infoEntry.getKey().getPatternsCondition().getPatterns());
-                            break;
-                        case POST:
-                            post.addAll(infoEntry.getKey().getPatternsCondition().getPatterns());
-                            break;
-                        case PUT:
-                            put.addAll(infoEntry.getKey().getPatternsCondition().getPatterns());
-                            break;
-                        case PATCH:
-                            patch.addAll(infoEntry.getKey().getPatternsCondition().getPatterns());
-                            break;
-                        case DELETE:
-                            delete.addAll(infoEntry.getKey().getPatternsCondition().getPatterns());
-                            break;
-                        default:
-                            all.addAll(infoEntry.getKey().getPatternsCondition().getPatterns());
-                            break;
-                    }
+                switch (Objects.requireNonNull(request)) {
+                    case GET:
+                        get.addAll(getPathPatterns(infoEntry));
+                        break;
+                    case POST:
+                        post.addAll(getPathPatterns(infoEntry));
+                        break;
+                    case PUT:
+                        put.addAll(getPathPatterns(infoEntry));
+                        break;
+                    case PATCH:
+                        patch.addAll(getPathPatterns(infoEntry));
+                        break;
+                    case DELETE:
+                        delete.addAll(getPathPatterns(infoEntry));
+                        break;
+                    default:
+                        all.addAll(getPathPatterns(infoEntry));
+                        break;
                 }
             }
         }
@@ -88,16 +88,20 @@ public class AnonTagUtils {
     }
 
     /**
-     * 获取所有匿名标记的URL
-     * @param applicationContext /
+     * 获取路径
+     * @param infoEntry /
      * @return /
      */
-    public static Set<String> getAllAnonymousUrl(ApplicationContext applicationContext){
-        Set<String> allUrl = new HashSet<>();
-        Map<String, Set<String>> anonymousUrls = getAnonymousUrl(applicationContext);
-        for (String key : anonymousUrls.keySet()) {
-            allUrl.addAll(anonymousUrls.get(key));
+    private static Set<String> getPathPatterns(Map.Entry<RequestMappingInfo, HandlerMethod> infoEntry) {
+        if (Objects.nonNull(infoEntry.getKey().getPatternsCondition())) {
+            return infoEntry.getKey().getPatternsCondition().getPatterns();
         }
-        return allUrl;
+        return Optional.ofNullable(infoEntry.getKey()
+                        .getPathPatternsCondition())
+                .orElseThrow(() -> new IllegalArgumentException("not found mvc method patterns"))
+                .getPatterns()
+                .stream()
+                .map(PathPattern::getPatternString)
+                .collect(Collectors.toSet());
     }
 }

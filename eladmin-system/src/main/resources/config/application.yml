@@ -44,9 +44,10 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+# 让Spring Boot 自动检测方言
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
 
 task:
   pool:
