@@ -15,7 +15,8 @@
 */
 package ${package}.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.v3.oas.annotations.media.Schema;
 import cn.hutool.core.bean.copier.CopyOptions;
@@ -61,8 +62,9 @@ import java.io.Serializable;
 * @author ${author}
 * @date ${date}
 **/
+@Setter
+@Getter
 @Entity
-@Data
 @Table(name="${tableName}")
 public class ${className} implements Serializable {
 <#if columns??>
