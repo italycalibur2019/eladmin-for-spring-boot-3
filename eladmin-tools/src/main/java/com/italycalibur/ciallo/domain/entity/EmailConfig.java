@@ -15,10 +15,12 @@
  */
 package com.italycalibur.ciallo.domain.entity;
 
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -26,33 +28,34 @@ import java.io.Serializable;
  * @author Zheng Jie
  * @date 2018-12-26
  */
+@Setter
+@Getter
 @Entity
-@Data
 @Table(name = "tool_email_config")
 public class EmailConfig implements Serializable {
 
     @Id
     @Column(name = "config_id")
-    @ApiModelProperty(value = "ID", hidden = true)
+    @Schema(description = "ID", hidden = true)
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(value = "邮件服务器SMTP地址")
+    @Schema(description = "邮件服务器SMTP地址")
     private String host;
 
     @NotBlank
-    @ApiModelProperty(value = "邮件服务器 SMTP 端口")
+    @Schema(description = "邮件服务器 SMTP 端口")
     private String port;
 
     @NotBlank
-    @ApiModelProperty(value = "发件者用户名")
+    @Schema(description = "发件者用户名")
     private String user;
 
     @NotBlank
-    @ApiModelProperty(value = "密码")
+    @Schema(description = "密码")
     private String pass;
 
     @NotBlank
-    @ApiModelProperty(value = "收件人")
+    @Schema(description = "收件人")
     private String fromUser;
 }
