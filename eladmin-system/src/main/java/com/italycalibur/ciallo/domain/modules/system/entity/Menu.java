@@ -16,12 +16,13 @@
 package com.italycalibur.ciallo.domain.modules.system.entity;
 
 import com.alibaba.fastjson2.annotation.JSONField;
+import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
-import com.italycalibur.ciallo.domain.base.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;

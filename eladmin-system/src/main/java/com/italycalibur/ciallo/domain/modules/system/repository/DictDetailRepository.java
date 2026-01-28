@@ -15,9 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.repository;
 
-import com.italycalibur.ciallo.domain.base.BaseRepository;
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.system.entity.DictDetail;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ import java.util.List;
 * @author Zheng Jie
 * @date 2019-04-10
 */
-public interface DictDetailRepository extends BaseRepository<DictDetail, Long>, JpaSpecificationExecutor<DictDetail> {
+public interface DictDetailRepository extends BaseRepository<DictDetail, Long> {
 
     /**
      * 根据字典名称查询

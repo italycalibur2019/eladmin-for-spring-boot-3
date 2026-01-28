@@ -15,13 +15,12 @@
  */
 package com.italycalibur.ciallo.domain.modules.maint.repository;
 
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.maint.entity.DeployHistory;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
 * @author zhanghouying
 * @date 2019-08-24
 */
-public interface DeployHistoryRepository extends JpaRepository<DeployHistory, String>, JpaSpecificationExecutor<DeployHistory> {
+public interface DeployHistoryRepository extends BaseRepository<DeployHistory, String> {
 }

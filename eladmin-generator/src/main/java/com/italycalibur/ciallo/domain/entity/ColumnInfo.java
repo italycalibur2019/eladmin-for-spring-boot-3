@@ -15,12 +15,14 @@
  */
 package com.italycalibur.ciallo.domain.entity;
 
+import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
+import com.italycalibur.ciallo.domain.utils.GenUtil;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.italycalibur.ciallo.domain.utils.GenUtil;
-import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 /**
@@ -33,7 +35,7 @@ import java.io.Serializable;
 @Entity
 @NoArgsConstructor
 @Table(name = "code_column")
-public class ColumnInfo implements Serializable {
+public class ColumnInfo extends SimpleBaseEntity implements Serializable {
 
     @Id
     @Column(name = "column_id")

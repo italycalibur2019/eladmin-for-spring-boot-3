@@ -16,7 +16,7 @@
 package com.italycalibur.ciallo.domain;
 
 import com.italycalibur.ciallo.domain.annotation.rest.AnonymousGetMapping;
-import com.italycalibur.ciallo.domain.base.BaseRepositorySupport;
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepositorySupport;
 import com.italycalibur.ciallo.domain.utils.SpringBeanHolder;
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.extern.slf4j.Slf4j;

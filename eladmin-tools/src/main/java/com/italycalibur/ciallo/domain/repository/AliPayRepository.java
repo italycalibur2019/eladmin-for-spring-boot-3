@@ -15,12 +15,12 @@
  */
 package com.italycalibur.ciallo.domain.repository;
 
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.entity.AlipayConfig;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author Zheng Jie
  * @date 2018-12-31
  */
-public interface AliPayRepository extends JpaRepository<AlipayConfig,Long> {
+public interface AliPayRepository extends BaseRepository<AlipayConfig,Long> {
 }

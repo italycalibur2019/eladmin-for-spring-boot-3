@@ -15,16 +15,15 @@
  */
 package com.italycalibur.ciallo.domain.repository;
 
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.entity.S3Storage;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 /**
 * @author Zheng Jie
 * @date 2025-06-25
 */
-public interface S3StorageRepository extends JpaRepository<S3Storage, Long>, JpaSpecificationExecutor<S3Storage> {
+public interface S3StorageRepository extends BaseRepository<S3Storage, Long> {
 
 	/**
 	 * 根据ID查询文件路径

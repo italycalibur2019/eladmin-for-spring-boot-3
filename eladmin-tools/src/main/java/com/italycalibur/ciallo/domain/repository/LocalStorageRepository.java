@@ -15,13 +15,12 @@
  */
 package com.italycalibur.ciallo.domain.repository;
 
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.entity.LocalStorage;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
 * @author Zheng Jie
 * @date 2019-09-05
 */
-public interface LocalStorageRepository extends JpaRepository<LocalStorage, Long>, JpaSpecificationExecutor<LocalStorage> {
+public interface LocalStorageRepository extends BaseRepository<LocalStorage, Long> {
 }

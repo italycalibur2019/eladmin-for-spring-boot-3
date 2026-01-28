@@ -1,4 +1,4 @@
-package com.italycalibur.ciallo.domain.base;
+package com.italycalibur.ciallo.domain.base.jpa;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  * @date 2026-01-27 14:09:58
  * @version 1.0
  */ 
-public class BaseRepositorySupport<E extends BaseEntity, ID extends Serializable>
+public class BaseRepositorySupport<E extends SimpleBaseEntity, ID extends Serializable>
         extends SimpleJpaRepository<E, ID> implements BaseRepository<E, ID> {
 
     // 计数 SQL 格式匹配

@@ -15,12 +15,15 @@
  */
 package com.italycalibur.ciallo.domain.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.italycalibur.ciallo.domain.base.BaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**

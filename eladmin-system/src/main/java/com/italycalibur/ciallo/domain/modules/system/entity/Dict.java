@@ -15,13 +15,14 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.entity;
 
+import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
-import com.italycalibur.ciallo.domain.base.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.List;
 

@@ -15,9 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.repository;
 
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.entity.SysLog;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -27,7 +26,7 @@ import org.springframework.stereotype.Repository;
  * @date 2018-11-24
  */
 @Repository
-public interface LogRepository extends JpaRepository<SysLog,Long>, JpaSpecificationExecutor<SysLog> {
+public interface LogRepository extends BaseRepository<SysLog,Long> {
 
     /**
      * 根据日志类型删除信息

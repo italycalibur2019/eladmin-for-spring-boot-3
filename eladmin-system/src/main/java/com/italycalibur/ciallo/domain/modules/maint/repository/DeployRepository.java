@@ -15,13 +15,12 @@
  */
 package com.italycalibur.ciallo.domain.modules.maint.repository;
 
-import com.italycalibur.ciallo.domain.base.BaseRepository;
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.maint.entity.Deploy;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
 * @author zhanghouying
 * @date 2019-08-24
 */
-public interface DeployRepository extends BaseRepository<Deploy, Long>, JpaSpecificationExecutor<Deploy> {
+public interface DeployRepository extends BaseRepository<Deploy, Long> {
 }

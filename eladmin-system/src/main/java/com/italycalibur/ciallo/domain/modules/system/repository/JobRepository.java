@@ -15,9 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.repository;
 
-import com.italycalibur.ciallo.domain.base.BaseRepository;
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.system.entity.Job;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.Set;
 
@@ -25,7 +24,7 @@ import java.util.Set;
 * @author Zheng Jie
 * @date 2019-03-29
 */
-public interface JobRepository extends BaseRepository<Job, Long>, JpaSpecificationExecutor<Job> {
+public interface JobRepository extends BaseRepository<Job, Long> {
 
     /**
      * 根据名称查询

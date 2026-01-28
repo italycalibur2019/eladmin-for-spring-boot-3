@@ -17,8 +17,8 @@ package com.italycalibur.ciallo.domain.entity;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
-import com.italycalibur.ciallo.domain.base.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

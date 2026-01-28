@@ -15,10 +15,13 @@
  */
 package com.italycalibur.ciallo.domain.modules.quartz.entity;
 
+import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -26,10 +29,11 @@ import java.sql.Timestamp;
  * @author Zheng Jie
  * @date 2019-01-07
  */
+@Getter
+@Setter
 @Entity
-@Data
 @Table(name = "sys_quartz_log")
-public class QuartzLog implements Serializable {
+public class QuartzLog extends SimpleBaseEntity implements Serializable {
 
     @Id
     @Column(name = "log_id")

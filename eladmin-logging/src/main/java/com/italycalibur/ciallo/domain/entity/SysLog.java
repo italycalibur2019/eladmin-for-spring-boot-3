@@ -16,12 +16,14 @@
 package com.italycalibur.ciallo.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -34,7 +36,7 @@ import java.sql.Timestamp;
 @Setter
 @Table(name = "sys_log")
 @NoArgsConstructor
-public class SysLog implements Serializable {
+public class SysLog extends SimpleBaseEntity implements Serializable {
 
     @Id
     @Column(name = "log_id")

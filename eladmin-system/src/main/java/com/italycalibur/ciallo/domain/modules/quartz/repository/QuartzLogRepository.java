@@ -15,14 +15,13 @@
  */
 package com.italycalibur.ciallo.domain.modules.quartz.repository;
 
+import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.quartz.entity.QuartzLog;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * @author Zheng Jie
  * @date 2019-01-07
  */
-public interface QuartzLogRepository extends JpaRepository<QuartzLog,Long>, JpaSpecificationExecutor<QuartzLog> {
+public interface QuartzLogRepository extends BaseRepository<QuartzLog,Long> {
 
 }

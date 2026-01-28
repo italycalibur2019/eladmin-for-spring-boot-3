@@ -15,8 +15,12 @@
  */
 package com.italycalibur.ciallo.domain.entity;
 
+import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +36,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = "tool_alipay_config")
-public class AlipayConfig implements Serializable {
+public class AlipayConfig extends SimpleBaseEntity implements Serializable {
 
     @Id
     @Column(name = "config_id")

@@ -15,13 +15,14 @@
  */
 package com.italycalibur.ciallo.domain.modules.maint.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import com.italycalibur.ciallo.domain.base.BaseEntity;
-import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Set;
 
