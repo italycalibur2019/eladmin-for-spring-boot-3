@@ -742,10 +742,10 @@ VALUES (1, 1),
 
 INSERT INTO sys.td_user (user_id, dept_id, username, nick_name, gender, phone, email, avatar_name, avatar_path, password,
                          is_admin, enabled, create_by, update_by, pwd_reset_time, create_time, update_time)
-VALUES (1, 2, 'admin', '管理员', '男', '18888888888', '201507802@qq.com', NULL,NULL,
+VALUES (1, 1, 'admin', '管理员', '男', '18888888888', '201507802@qq.com', NULL,NULL,
         '$2a$10$Egp1/gvFlt7zhlXVfEFw4OfWQCGPw0ClmMcc6FjTnvXNRVf9zdMRa', TRUE, TRUE, NULL, 'admin',
         '2020-05-03 16:38:31', '2018-08-23 09:11:56', '2025-01-22 10:26:42'),
-       (2, 7, 'test', '测试', '男', '19999999999', '231@qq.com', NULL, NULL,
+       (2, 2, 'test', '测试', '男', '19999999999', '231@qq.com', NULL, NULL,
         '$2a$10$4XcyudOYTSz6fue6KFNMHeUQnCX5jbBQypLEnGk1PmekXt5c95JcK', FALSE, TRUE, 'admin', 'admin', NULL,
         '2020-05-05 11:15:49', '2025-01-21 14:53:04');
 

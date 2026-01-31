@@ -33,6 +33,6 @@ public interface LogRepository extends BaseRepository<SysLog,Long> {
      * @param logType 日志类型
      */
     @Modifying
-    @Query(value = "delete from sys_log where log_type = ?1", nativeQuery = true)
+    @Query(value = "delete from logback.td_system_log where log_type = ?1", nativeQuery = true)
     void deleteByLogType(String logType);
 }

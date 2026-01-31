@@ -30,6 +30,6 @@ public interface S3StorageRepository extends BaseRepository<S3Storage, Long> {
 	 * @param id 文件ID
 	 * @return 文件路径
 	 */
-	@Query(value = "SELECT file_path FROM s3_storage WHERE id = ?1", nativeQuery = true)
+	@Query(value = "SELECT file_path FROM tool.td_s3_storage WHERE id = ?1", nativeQuery = true)
 	String selectFilePathById(Long id);
 }

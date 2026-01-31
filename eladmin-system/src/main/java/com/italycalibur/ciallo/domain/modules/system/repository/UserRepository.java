@@ -58,7 +58,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param lastPasswordResetTime /
      */
     @Modifying
-    @Query(value = "update sys_user set password = ?2 , pwd_reset_time = ?3 where username = ?1",nativeQuery = true)
+    @Query(value = "update sys.td_user set password = ?2 , pwd_reset_time = ?3 where username = ?1",nativeQuery = true)
     void updatePass(String username, String pass, Date lastPasswordResetTime);
 
     /**
@@ -67,7 +67,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param email 邮箱
      */
     @Modifying
-    @Query(value = "update sys_user set email = ?2 where username = ?1",nativeQuery = true)
+    @Query(value = "update sys.td_user set email = ?2 where username = ?1",nativeQuery = true)
     void updateEmail(String username, String email);
 
     /**
@@ -75,7 +75,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param roleId /
      * @return /
      */
-    @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles r WHERE" +
+    @Query(value = "SELECT u.* FROM sys.td_user u, sys.td_users_roles r WHERE" +
             " u.user_id = r.user_id AND r.role_id = ?1", nativeQuery = true)
     List<User> findByRoleId(Long roleId);
 
@@ -84,7 +84,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param deptId /
      * @return /
      */
-    @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles r, sys_roles_depts d WHERE " +
+    @Query(value = "SELECT u.* FROM sys.td_user u, sys.td_users_roles r, sys.td_roles_depts d WHERE " +
             "u.user_id = r.user_id AND r.role_id = d.role_id AND d.dept_id = ?1 group by u.user_id", nativeQuery = true)
     List<User> findByRoleDeptId(Long deptId);
 
@@ -93,7 +93,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param id 菜单ID
      * @return /
      */
-    @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles ur, sys_roles_menus rm WHERE\n" +
+    @Query(value = "SELECT u.* FROM sys.td_user u, sys.td_users_roles ur, sys.td_roles_menus rm WHERE\n" +
             "u.user_id = ur.user_id AND ur.role_id = rm.role_id AND rm.menu_id = ?1 group by u.user_id", nativeQuery = true)
     List<User> findByMenuId(Long id);
 
@@ -108,7 +108,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param ids /
      * @return /
      */
-    @Query(value = "SELECT count(1) FROM sys_user u, sys_users_jobs j WHERE u.user_id = j.user_id AND j.job_id IN ?1", nativeQuery = true)
+    @Query(value = "SELECT count(1) FROM sys.td_user u, sys.td_users_jobs j WHERE u.user_id = j.user_id AND j.job_id IN ?1", nativeQuery = true)
     int countByJobs(Set<Long> ids);
 
     /**
@@ -116,7 +116,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param deptIds /
      * @return /
      */
-    @Query(value = "SELECT count(1) FROM sys_user u WHERE u.dept_id IN ?1", nativeQuery = true)
+    @Query(value = "SELECT count(1) FROM sys.td_user u WHERE u.dept_id IN ?1", nativeQuery = true)
     int countByDepts(Set<Long> deptIds);
 
     /**
@@ -124,7 +124,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param ids /
      * @return /
      */
-    @Query(value = "SELECT count(1) FROM sys_user u, sys_users_roles r WHERE " +
+    @Query(value = "SELECT count(1) FROM sys.td_user u, sys.td_users_roles r WHERE " +
             "u.user_id = r.user_id AND r.role_id in ?1", nativeQuery = true)
     int countByRoles(Set<Long> ids);
 
@@ -134,6 +134,6 @@ public interface UserRepository extends BaseRepository<User, Long> {
      * @param pwd 、
      */
     @Modifying
-    @Query(value = "update sys_user set password = ?2 where user_id in ?1",nativeQuery = true)
+    @Query(value = "update sys.td_user set password = ?2 where user_id in ?1",nativeQuery = true)
     void resetPwd(Set<Long> ids, String pwd);
 }

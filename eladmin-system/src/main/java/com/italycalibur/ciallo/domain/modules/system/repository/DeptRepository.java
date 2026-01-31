@@ -47,7 +47,7 @@ public interface DeptRepository extends BaseRepository<Dept, Long> {
      * @param roleId 角色ID
      * @return /
      */
-    @Query(value = "select d.* from sys_dept d, sys_roles_depts r where " +
+    @Query(value = "select d.* from sys.td_dept d, sys_roles_depts r where " +
             "d.dept_id = r.dept_id and r.role_id = ?1", nativeQuery = true)
     Set<Dept> findByRoleId(Long roleId);
 
@@ -64,6 +64,6 @@ public interface DeptRepository extends BaseRepository<Dept, Long> {
      * @param id /
      */
     @Modifying
-    @Query(value = " update sys_dept set sub_count = ?1 where dept_id = ?2 ",nativeQuery = true)
+    @Query(value = " update sys.td_dept set sub_count = ?1 where dept_id = ?2 ",nativeQuery = true)
     void updateSubCntById(Integer count, Long id);
 }
