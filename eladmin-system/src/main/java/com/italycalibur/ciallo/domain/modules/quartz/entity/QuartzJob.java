@@ -32,7 +32,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "sys_quartz_job")
+@Table(name = "td_quartz_job", schema = "sys")
 public class QuartzJob extends BaseEntity implements Serializable {
 
     public static final String JOB_KEY = "JOB_KEY";

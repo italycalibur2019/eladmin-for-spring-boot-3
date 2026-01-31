@@ -32,7 +32,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name="mnt_app")
+@Table(name="td_app", schema = "mnt")
 public class App extends BaseEntity implements Serializable {
 
     @Id

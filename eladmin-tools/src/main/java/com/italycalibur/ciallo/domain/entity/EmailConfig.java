@@ -35,7 +35,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Entity
-@Table(name = "tool_email_config")
+@Table(name = "td_email_config", schema = "tool")
 public class EmailConfig extends SimpleBaseEntity implements Serializable {
 
     @Id
@@ -53,6 +53,7 @@ public class EmailConfig extends SimpleBaseEntity implements Serializable {
 
     @NotBlank
     @Schema(description = "发件者用户名")
+    @Column(name = "username")
     private String user;
 
     @NotBlank

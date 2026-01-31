@@ -34,7 +34,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "sys_menu")
+@Table(name = "td_menu", schema = "sys")
 public class Menu extends BaseEntity implements Serializable {
 
     @Id

@@ -33,7 +33,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name="tool_local_storage")
+@Table(name="td_local_storage", schema = "tool")
 @NoArgsConstructor
 public class LocalStorage extends BaseEntity implements Serializable {
 

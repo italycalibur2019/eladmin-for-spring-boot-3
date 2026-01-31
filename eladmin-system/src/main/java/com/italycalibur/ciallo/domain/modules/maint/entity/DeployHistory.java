@@ -37,7 +37,7 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name="mnt_deploy_history")
+@Table(name="td_deploy_history", schema = "mnt")
 public class DeployHistory extends SimpleBaseEntity implements Serializable {
 
     @Id

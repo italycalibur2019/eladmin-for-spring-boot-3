@@ -35,7 +35,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_dept")
+@Table(name="td_dept", schema = "sys")
 public class Dept extends BaseEntity implements Serializable {
 
     @Id

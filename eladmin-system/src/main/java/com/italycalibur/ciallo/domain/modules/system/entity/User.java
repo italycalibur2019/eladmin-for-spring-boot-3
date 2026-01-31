@@ -36,7 +36,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_user")
+@Table(name="td_user", schema = "sys")
 public class User extends BaseEntity implements Serializable {
 
     @Id
@@ -48,14 +48,14 @@ public class User extends BaseEntity implements Serializable {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Schema(description = "用户角色")
-    @JoinTable(name = "sys_users_roles",
+    @JoinTable(name = "td_users_roles", schema = "sys",
             joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")})
     private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Schema(description = "用户岗位")
-    @JoinTable(name = "sys_users_jobs",
+    @JoinTable(name = "td_users_jobs", schema = "sys",
             joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "job_id",referencedColumnName = "job_id")})
     private Set<Job> jobs;

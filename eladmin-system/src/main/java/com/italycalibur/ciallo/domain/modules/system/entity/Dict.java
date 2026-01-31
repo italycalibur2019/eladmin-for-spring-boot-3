@@ -33,7 +33,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_dict")
+@Table(name="td_dict", schema = "sys")
 public class Dict extends BaseEntity implements Serializable {
 
     @Id

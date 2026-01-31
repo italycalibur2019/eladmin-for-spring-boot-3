@@ -35,7 +35,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name="mnt_database")
+@Table(name="td_database", schema = "mnt")
 public class Database extends BaseEntity implements Serializable {
 
     @Id

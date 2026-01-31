@@ -34,7 +34,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Entity
-@Table(name = "tool_s3_storage")
+@Table(name = "td_s3_storage", schema = "tool")
 public class S3Storage extends BaseEntity implements Serializable {
 
     @Id

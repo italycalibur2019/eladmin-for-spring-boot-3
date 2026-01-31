@@ -34,7 +34,7 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name = "sys_log")
+@Table(name = "td_system_log", schema = "logback")
 @NoArgsConstructor
 public class SysLog extends SimpleBaseEntity implements Serializable {
 

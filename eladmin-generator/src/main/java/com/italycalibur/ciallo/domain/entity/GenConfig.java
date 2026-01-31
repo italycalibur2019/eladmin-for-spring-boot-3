@@ -34,7 +34,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "code_config")
+@Table(name = "td_config", schema = "code")
 public class GenConfig extends SimpleBaseEntity implements Serializable {
 
     public GenConfig(String tableName) {

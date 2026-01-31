@@ -32,7 +32,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
-@Table(name = "sys_quartz_log")
+@Table(name = "td_quartz_log", schema = "logback")
 public class QuartzLog extends SimpleBaseEntity implements Serializable {
 
     @Id

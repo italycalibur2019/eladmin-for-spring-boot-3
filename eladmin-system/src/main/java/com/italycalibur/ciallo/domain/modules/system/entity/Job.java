@@ -33,7 +33,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_job")
+@Table(name="td_job", schema = "sys")
 public class Job extends BaseEntity implements Serializable {
 
     @Id

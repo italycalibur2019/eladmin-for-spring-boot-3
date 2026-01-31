@@ -33,7 +33,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@Table(name="mnt_server")
+@Table(name="td_server", schema = "mnt")
 public class ServerDeploy extends BaseEntity implements Serializable {
 
     @Id

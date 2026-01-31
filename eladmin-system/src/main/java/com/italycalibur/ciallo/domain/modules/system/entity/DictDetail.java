@@ -31,7 +31,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_dict_detail")
+@Table(name="td_dict_detail", schema = "sys")
 public class DictDetail extends BaseEntity implements Serializable {
 
     @Id

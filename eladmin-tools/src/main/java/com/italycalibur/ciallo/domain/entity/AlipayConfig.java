@@ -35,7 +35,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Entity
-@Table(name = "tool_alipay_config")
+@Table(name = "td_alipay_config", schema = "tool")
 public class AlipayConfig extends SimpleBaseEntity implements Serializable {
 
     @Id

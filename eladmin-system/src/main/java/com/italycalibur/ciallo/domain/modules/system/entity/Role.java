@@ -37,7 +37,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "sys_role")
+@Table(name = "td_role", schema = "sys")
 public class Role extends BaseEntity implements Serializable {
 
     @Id
@@ -53,14 +53,14 @@ public class Role extends BaseEntity implements Serializable {
     private Set<User> users;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "sys_roles_menus",
+    @JoinTable(name = "td_roles_menus", schema = "sys",
             joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")},
             inverseJoinColumns = {@JoinColumn(name = "menu_id",referencedColumnName = "menu_id")})
     @Schema(description = "菜单", hidden = true)
     private Set<Menu> menus;
 
     @ManyToMany
-    @JoinTable(name = "sys_roles_depts",
+    @JoinTable(name = "td_roles_depts", schema = "sys",
             joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")},
             inverseJoinColumns = {@JoinColumn(name = "dept_id",referencedColumnName = "dept_id")})
     @Schema(description = "部门", hidden = true)

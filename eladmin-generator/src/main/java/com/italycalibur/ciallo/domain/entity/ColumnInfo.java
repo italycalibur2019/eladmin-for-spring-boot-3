@@ -34,7 +34,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "code_column")
+@Table(name = "td_column", schema = "code")
 public class ColumnInfo extends SimpleBaseEntity implements Serializable {
 
     @Id
