@@ -27,16 +27,38 @@
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <!-- 依赖版本管理 -->
+        <maven-compiler.version>3.14.1</maven-compiler.version>
         <springboot.version>3.5.10</springboot.version>
         <fastjson2.version>2.0.59</fastjson2.version>
         <druid.version>1.2.27</druid.version>
         <commons-pool2.version>2.13.1</commons-pool2.version>
         <lombok.version>1.18.42</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
+        <redisson.version>3.52.0</redisson.version>
+        <p6spy.version>3.9.1</p6spy.version>
+        <springdoc.version>2.8.15</springdoc.version>
+        <mica-ip2region.version>3.5.7</mica-ip2region.version>
+        <poi.version>5.5.1</poi.version>
+        <xerces.version>2.12.2</xerces.version>
+        <easy-captcha.version>1.6.2</easy-captcha.version>
+        <commons-text.version>1.15.0</commons-text.version>
+        <jakarta-api.version>2.0.1</jakarta-api.version>
+        <guava.version>33.5.0-jre</guava.version>
+        <hutool.version>5.8.43</hutool.version>
+        <configuration.version>2.13.0</configuration.version>
+        <alipay.version>4.40.630.ALL</alipay.version>
+        <amazon.version>2.41.14</amazon.version>
+        <jjwt.version>0.13.0</jjwt.version>
+        <!-- 新版本少了很多方法，仍使用此版本 -->
+        <ganymed.version>build210</ganymed.version>
+        <jsch.version>2.27.7</jsch.version>
+        <oshi.version>6.9.2</oshi.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- Spring Boot 依赖管理 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -44,11 +66,79 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- hutool 工具包 -->
+            <!-- hutool-bom 在依赖管理的时候会出现子模块仍需定义版本号的问题，目前仍未解决，故仍使用hutool-all -->
+            <!-- <dependency>-->
+            <!--     <groupId>cn.hutool</groupId>-->
+            <!--     <artifactId>hutool-bom</artifactId>-->
+            <!--     <version>${hutool.version}</version>-->
+            <!--     <type>pom</type>-->
+            <!--     <scope>import</scope>-->
+            <!-- </dependency>-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!-- 配置文件读取工具 -->
+            <!-- Source: https://mvnrepository.com/artifact/org.apache.commons/commons-configuration2 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-configuration2</artifactId>
+                <version>${configuration.version}</version>
+            </dependency>
+            <!-- 支付宝依赖 -->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay.version}</version>
+            </dependency>
+            <!--amazon s3 依赖-->
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>s3</artifactId>
+                <version>${amazon.version}</version>
+            </dependency>
+            <!-- jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <!-- linux的管理 -->
+            <dependency>
+                <groupId>ch.ethz.ganymed</groupId>
+                <artifactId>ganymed-ssh2</artifactId>
+                <version>${ganymed.version}</version>
+            </dependency>
+            <!-- ssh通讯 -->
+            <!-- Source: https://mvnrepository.com/artifact/com.github.mwiede/jsch -->
+            <dependency>
+                <groupId>com.github.mwiede</groupId>
+                <artifactId>jsch</artifactId>
+                <version>${jsch.version}</version>
+            </dependency>
+            <!-- 获取系统信息 -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <!--Spring boot 核心-->
+        <!--Spring boot jpa -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -106,35 +196,29 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.18.0</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <!--Spring boot redisson-->
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.52.0</version>
+            <version>${redisson.version}</version>
         </dependency>
 
         <!--监控sql日志-->
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
-            <version>3.9.1</version>
+            <version>${p6spy.version}</version>
         </dependency>
 
         <!-- Springdoc 相关 -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.8.15</version>
+            <version>${springdoc.version}</version>
         </dependency>
 
-        <!--Mysql依赖包-->
-<!--        <dependency>-->
-<!--            <groupId>com.mysql</groupId>-->
-<!--            <artifactId>mysql-connector-j</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
         <!-- Postgresql依赖包 -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -153,7 +237,7 @@
         <dependency>
             <groupId>net.dreamlu</groupId>
             <artifactId>mica-ip2region</artifactId>
-            <version>3.5.7</version>
+            <version>${mica-ip2region.version}</version>
         </dependency>
 
         <!--lombok插件-->
@@ -167,17 +251,17 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>5.5.1</version>
+            <version>${poi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>5.5.1</version>
+            <version>${poi.version}</version>
         </dependency>
         <dependency>
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
-            <version>2.12.2</version>
+            <version>${xerces.version}</version>
         </dependency>
 
         <!-- fastjson2 -->
@@ -186,7 +270,6 @@
             <artifactId>fastjson2</artifactId>
             <version>${fastjson2.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2-extension-spring6</artifactId>
@@ -197,13 +280,13 @@
         <dependency>
             <groupId>com.github.whvcse</groupId>
             <artifactId>easy-captcha</artifactId>
-            <version>1.6.2</version>
+            <version>${easy-captcha.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
-            <version>1.15.0</version>
+            <version>${commons-text.version}</version>
         </dependency>
 
         <!--mapStruct依赖-->
@@ -222,13 +305,13 @@
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>2.0.1</version>
+            <version>${jakarta-api.version}</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>33.5.0-jre</version>
+            <version>${guava.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -246,7 +329,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.1</version>
+                <version>${maven-compiler.version}</version>
                 <configuration>
                     <release>${java.version}</release>
                     <source>${maven.compiler.target}</source>
@@ -254,17 +337,17 @@
                     <!-- spring-boot-starter-parent里内置了maven-compiler-plugin，里面自带这个配置 -->
                     <!-- 使用spring-boot-dependencies管理依赖时必须要把这个配置加上，否则@RequestParam会报错 -->
                     <parameters>true</parameters>
+                    <!-- 启用注解处理支持 lombok, mapStruct 等依赖 -->
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.42</version>
+                            <version>${lombok.version}</version>
                         </path>
-                        <!-- 如果用了 MapStruct 等，也要加进来 -->
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
-                            <version>1.6.3</version>
+                            <version>${mapstruct.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -283,7 +366,6 @@
             </releases>
         </repository>
     </repositories>
-
     <pluginRepositories>
         <pluginRepository>
             <id>public</id>

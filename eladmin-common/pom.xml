@@ -14,11 +14,9 @@
     <name>公共模块</name>
 
     <dependencies>
-        <!--工具包-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 </project>

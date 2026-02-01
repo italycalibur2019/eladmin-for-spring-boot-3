@@ -10,10 +10,6 @@
     <artifactId>eladmin-system</artifactId>
     <name>核心模块</name>
 
-    <properties>
-        <jjwt.version>0.13.0</jjwt.version>
-    </properties>
-
     <dependencies>
         <!-- 代码生成模块 -->
         <dependency>
@@ -45,38 +41,33 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
-            <version>${jjwt.version}</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
-            <version>${jjwt.version}</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
-            <version>${jjwt.version}</version>
         </dependency>
 
         <!-- linux的管理 -->
         <dependency>
             <groupId>ch.ethz.ganymed</groupId>
             <artifactId>ganymed-ssh2</artifactId>
-            <version>build210</version>
         </dependency>
+
+        <!-- ssh通讯 -->
         <!-- Source: https://mvnrepository.com/artifact/com.github.mwiede/jsch -->
         <dependency>
             <groupId>com.github.mwiede</groupId>
             <artifactId>jsch</artifactId>
-            <version>2.27.7</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- 获取系统信息 -->
         <dependency>
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
-            <version>6.9.2</version>
         </dependency>
     </dependencies>
 
@@ -86,14 +77,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <!-- 跳过单元测试 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
             </plugin>
         </plugins>
     </build>
