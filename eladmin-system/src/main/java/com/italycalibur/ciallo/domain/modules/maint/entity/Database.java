@@ -17,7 +17,8 @@ package com.italycalibur.ciallo.domain.modules.maint.entity;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,6 +40,7 @@ import java.io.Serializable;
 public class Database extends BaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "db_id")
     @Schema(description = "ID", hidden = true)
     private String id;

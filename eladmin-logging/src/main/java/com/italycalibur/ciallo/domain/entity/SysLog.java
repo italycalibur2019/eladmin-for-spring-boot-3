@@ -16,7 +16,8 @@
 package com.italycalibur.ciallo.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.SimpleBaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -39,9 +40,9 @@ import java.sql.Timestamp;
 public class SysLog extends SimpleBaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "log_id")
     @Schema(description = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Schema(description = "操作用户")

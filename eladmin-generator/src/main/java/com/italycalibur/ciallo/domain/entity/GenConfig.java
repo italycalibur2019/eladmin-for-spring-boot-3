@@ -15,7 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.entity;
 
-import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.SimpleBaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -42,9 +43,9 @@ public class GenConfig extends SimpleBaseEntity implements Serializable {
     }
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "config_id")
     @Schema(description = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank

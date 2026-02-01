@@ -15,7 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.modules.quartz.entity;
 
-import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -38,9 +39,9 @@ public class QuartzJob extends BaseEntity implements Serializable {
     public static final String JOB_KEY = "JOB_KEY";
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "job_id")
     @NotNull(groups = {Update.class})
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Transient

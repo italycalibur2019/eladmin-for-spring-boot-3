@@ -15,7 +15,7 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.repository;
 
-import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
+import com.italycalibur.ciallo.domain.base.jpa.repository.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.system.entity.Dept;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

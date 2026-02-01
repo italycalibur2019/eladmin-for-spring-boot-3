@@ -15,7 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.entity;
 
-import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.SimpleBaseEntity;
 import com.italycalibur.ciallo.domain.utils.GenUtil;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -38,9 +39,9 @@ import java.io.Serializable;
 public class ColumnInfo extends SimpleBaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "column_id")
     @Schema(description = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Schema(description = "表名")

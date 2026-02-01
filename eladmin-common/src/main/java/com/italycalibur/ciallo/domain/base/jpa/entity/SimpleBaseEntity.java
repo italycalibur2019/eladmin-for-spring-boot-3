@@ -1,10 +1,13 @@
-package com.italycalibur.ciallo.domain.base.jpa;
+package com.italycalibur.ciallo.domain.base.jpa.entity;
 
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
 /**
@@ -16,7 +19,9 @@ import java.lang.reflect.Field;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class SimpleBaseEntity {
+public abstract class SimpleBaseEntity implements Serializable {
+
+    protected abstract Serializable getId();
 
     @Override
     public String toString() {

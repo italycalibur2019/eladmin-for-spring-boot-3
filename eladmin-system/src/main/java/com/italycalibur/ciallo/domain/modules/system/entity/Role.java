@@ -16,7 +16,8 @@
 package com.italycalibur.ciallo.domain.modules.system.entity;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.BaseEntity;
 import com.italycalibur.ciallo.domain.enums.DataScopeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -41,9 +42,9 @@ import java.util.Set;
 public class Role extends BaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "role_id")
     @NotNull(groups = {Update.class})
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "ID", hidden = true)
     private Long id;
 

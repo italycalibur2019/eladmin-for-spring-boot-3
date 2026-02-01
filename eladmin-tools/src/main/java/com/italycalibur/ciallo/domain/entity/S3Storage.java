@@ -17,7 +17,8 @@ package com.italycalibur.ciallo.domain.entity;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -38,9 +39,9 @@ import java.io.Serializable;
 public class S3Storage extends BaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "storage_id")
     @Schema(description = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank

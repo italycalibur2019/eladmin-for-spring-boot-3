@@ -17,7 +17,8 @@ package com.italycalibur.ciallo.domain.modules.maint.entity;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -37,9 +38,9 @@ import java.util.Objects;
 public class ServerDeploy extends BaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "server_id")
     @Schema(description = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Schema(description = "服务器名称")

@@ -1,5 +1,7 @@
-package com.italycalibur.ciallo.domain.base.jpa;
+package com.italycalibur.ciallo.domain.base.jpa.repository.support;
 
+import com.italycalibur.ciallo.domain.base.jpa.entity.SimpleBaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.repository.BaseRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;

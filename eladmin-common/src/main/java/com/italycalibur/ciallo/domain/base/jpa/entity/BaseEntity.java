@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.italycalibur.ciallo.domain.base.jpa;
+package com.italycalibur.ciallo.domain.base.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;

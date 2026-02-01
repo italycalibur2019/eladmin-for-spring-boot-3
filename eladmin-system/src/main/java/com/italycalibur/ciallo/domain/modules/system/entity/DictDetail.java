@@ -15,7 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.modules.system.entity;
 
-import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -35,10 +36,10 @@ import java.io.Serializable;
 public class DictDetail extends BaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "detail_id")
     @NotNull(groups = Update.class)
     @Schema(description = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JoinColumn(name = "dict_id")

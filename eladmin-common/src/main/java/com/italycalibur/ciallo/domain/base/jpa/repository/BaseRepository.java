@@ -1,5 +1,6 @@
-package com.italycalibur.ciallo.domain.base.jpa;
+package com.italycalibur.ciallo.domain.base.jpa.repository;
 
+import com.italycalibur.ciallo.domain.base.jpa.entity.SimpleBaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;

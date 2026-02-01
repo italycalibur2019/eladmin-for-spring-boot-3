@@ -15,6 +15,8 @@
 */
 package ${package}.domain;
 
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.SimpleBaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import cn.hutool.core.bean.BeanUtil;
@@ -66,15 +68,13 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name="${tableName}")
-public class ${className} implements Serializable {
+public class ${className} extends SimpleBaseEntity implements Serializable {
 <#if columns??>
     <#list columns as column>
 
     <#if column.columnKey = 'PRI'>
     @Id
-    <#if auto>
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    </#if>
+    @CustomIdGeneratorType
     </#if>
     @Column(name = "`${column.columnName}`"<#if column.columnKey = 'UNI'>,unique = true</#if><#if column.istNotNull && column.columnKey != 'PRI'>,nullable = false</#if>)
     <#if column.istNotNull && column.columnKey != 'PRI'>

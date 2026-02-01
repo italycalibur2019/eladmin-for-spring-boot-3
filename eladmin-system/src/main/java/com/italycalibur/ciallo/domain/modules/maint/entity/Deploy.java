@@ -17,7 +17,8 @@ package com.italycalibur.ciallo.domain.modules.maint.entity;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.italycalibur.ciallo.domain.base.jpa.BaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,10 +37,10 @@ import java.util.Set;
 @Table(name="td_deploy", schema = "mnt")
 public class Deploy extends BaseEntity implements Serializable {
 
-    @Id
+	@Id
+	@CustomIdGeneratorType
 	@Column(name = "deploy_id")
 	@Schema(description = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 	@ManyToMany

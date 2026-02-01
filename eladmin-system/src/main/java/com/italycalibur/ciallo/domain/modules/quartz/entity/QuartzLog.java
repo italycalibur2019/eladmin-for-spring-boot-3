@@ -15,7 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.modules.quartz.entity;
 
-import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.SimpleBaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,9 +37,9 @@ import java.sql.Timestamp;
 public class QuartzLog extends SimpleBaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "log_id")
     @Schema(description = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Schema(description = "任务名称", hidden = true)

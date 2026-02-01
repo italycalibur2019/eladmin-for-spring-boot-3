@@ -15,7 +15,8 @@
  */
 package com.italycalibur.ciallo.domain.entity;
 
-import com.italycalibur.ciallo.domain.base.jpa.SimpleBaseEntity;
+import com.italycalibur.ciallo.domain.base.jpa.annotation.CustomIdGeneratorType;
+import com.italycalibur.ciallo.domain.base.jpa.entity.SimpleBaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,6 +40,7 @@ import java.io.Serializable;
 public class AlipayConfig extends SimpleBaseEntity implements Serializable {
 
     @Id
+    @CustomIdGeneratorType
     @Column(name = "config_id")
     @Schema(description = "ID", hidden = true)
     private Long id;

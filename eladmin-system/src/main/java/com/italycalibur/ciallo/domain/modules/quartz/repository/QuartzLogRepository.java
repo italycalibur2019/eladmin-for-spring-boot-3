@@ -15,7 +15,7 @@
  */
 package com.italycalibur.ciallo.domain.modules.quartz.repository;
 
-import com.italycalibur.ciallo.domain.base.jpa.BaseRepository;
+import com.italycalibur.ciallo.domain.base.jpa.repository.BaseRepository;
 import com.italycalibur.ciallo.domain.modules.quartz.entity.QuartzLog;
 
 /**

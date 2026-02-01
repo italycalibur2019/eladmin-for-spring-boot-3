@@ -1,4 +1,4 @@
-package com.italycalibur.ciallo.domain.base.jpa;
+package com.italycalibur.ciallo.domain.base.jpa.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
