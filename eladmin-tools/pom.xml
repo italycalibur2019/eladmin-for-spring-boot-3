@@ -10,10 +10,6 @@
     <artifactId>eladmin-tools</artifactId>
     <name>工具模块</name>
 
-    <properties>
-        <alipay.version>4.40.630.ALL</alipay.version>
-    </properties>
-
     <dependencies>
         <!-- 同时需要common模块和logging模块只需要引入logging模块即可 -->
         <dependency>
@@ -32,15 +28,12 @@
         <dependency>
             <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-sdk-java</artifactId>
-            <version>${alipay.version}</version>
         </dependency>
 
         <!--amazon s3 依赖-->
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>s3</artifactId>
-            <version>2.41.14</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

@@ -10,10 +10,6 @@
     <artifactId>eladmin-generator</artifactId>
     <name>代码生成模块</name>
 
-    <properties>
-        <configuration.version>2.13.0</configuration.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.italycalibur.ciallo</groupId>
@@ -27,11 +23,9 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
-        <!-- Source: https://mvnrepository.com/artifact/org.apache.commons/commons-configuration2 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-configuration2</artifactId>
-            <version>${configuration.version}</version>
         </dependency>
     </dependencies>
 </project>
