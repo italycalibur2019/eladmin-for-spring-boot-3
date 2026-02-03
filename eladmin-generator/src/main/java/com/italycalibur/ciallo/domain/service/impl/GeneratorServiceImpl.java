@@ -100,8 +100,8 @@ public class GeneratorServiceImpl implements GeneratorService {
         String sql = "SELECT" +
                 "    t.relname AS table_name," +
                 "    c.column_name," +
-                "    c.data_type AS column_type," +
                 "    c.is_nullable," +
+                "    c.data_type AS column_type," +
                 "    d.description AS remark," +
                 "    c.ordinal_position " +
                 "FROM pg_stat_user_tables t " +
@@ -116,10 +116,10 @@ public class GeneratorServiceImpl implements GeneratorService {
             columnInfos.add(
                     new ColumnInfo(
                             tableName,
-                            arr[2].toString(),
-                            "NO".equals(arr[1]),
-                            arr[4].toString(),
-                            arr[3] == null ? null : arr[3].toString(),
+                            arr[1].toString(),
+                            "NO".equals(arr[2]),
+                            arr[3].toString(),
+                            arr[4] == null ? null : arr[4].toString(),
                             null,
                             null)
             );
