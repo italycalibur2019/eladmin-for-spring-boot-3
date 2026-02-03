@@ -15,22 +15,23 @@
  */
 package com.italycalibur.ciallo.domain.rest;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
 import com.italycalibur.ciallo.domain.entity.ColumnInfo;
-import com.italycalibur.ciallo.domain.vo.TableInfo;
 import com.italycalibur.ciallo.domain.exception.BadRequestException;
 import com.italycalibur.ciallo.domain.service.GenConfigService;
 import com.italycalibur.ciallo.domain.service.GeneratorService;
 import com.italycalibur.ciallo.domain.utils.PageResult;
 import com.italycalibur.ciallo.domain.utils.PageUtil;
+import com.italycalibur.ciallo.domain.vo.TableInfo;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
 import java.util.List;
 
 /**
@@ -60,8 +61,7 @@ public class GeneratorController {
     public ResponseEntity<PageResult<TableInfo>> queryTables(@RequestParam(defaultValue = "") String name,
                                                              @RequestParam(defaultValue = "0")Integer page,
                                                              @RequestParam(defaultValue = "10")Integer size){
-        int[] startEnd = PageUtil.transToStartEnd(page, size);
-        return new ResponseEntity<>(generatorService.getTables(name,startEnd), HttpStatus.OK);
+        return new ResponseEntity<>(generatorService.getTables(name,new int[]{page, size}), HttpStatus.OK);
     }
 
     @Operation(description = "查询字段数据")

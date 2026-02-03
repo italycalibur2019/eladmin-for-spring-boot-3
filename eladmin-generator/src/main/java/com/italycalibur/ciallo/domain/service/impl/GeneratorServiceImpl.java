@@ -16,30 +16,28 @@
 package com.italycalibur.ciallo.domain.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ZipUtil;
-import com.italycalibur.ciallo.domain.utils.*;
-import lombok.RequiredArgsConstructor;
-import com.italycalibur.ciallo.domain.entity.GenConfig;
 import com.italycalibur.ciallo.domain.entity.ColumnInfo;
-import com.italycalibur.ciallo.domain.vo.TableInfo;
+import com.italycalibur.ciallo.domain.entity.GenConfig;
 import com.italycalibur.ciallo.domain.exception.BadRequestException;
 import com.italycalibur.ciallo.domain.repository.ColumnInfoRepository;
 import com.italycalibur.ciallo.domain.service.GeneratorService;
 import com.italycalibur.ciallo.domain.utils.*;
+import com.italycalibur.ciallo.domain.vo.TableInfo;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,8 +52,6 @@ import java.util.stream.Collectors;
 @SuppressWarnings({"unchecked","all"})
 public class GeneratorServiceImpl implements GeneratorService {
     private static final Logger log = LoggerFactory.getLogger(GeneratorServiceImpl.class);
-    @PersistenceContext
-    private EntityManager em;
 
     private final ColumnInfoRepository columnInfoRepository;
 
@@ -63,35 +59,28 @@ public class GeneratorServiceImpl implements GeneratorService {
     @Override
     public Object getTables() {
         // 使用预编译防止sql注入
-        String sql = "select table_name ,create_time , engine, table_collation, table_comment from information_schema.tables " +
-                "where table_schema = (select database()) " +
-                "order by create_time desc";
-        Query query = em.createNativeQuery(sql);
-        return query.getResultList();
+        String sql = "select table_schema as schema_name, table_name, cast(null as timestamp) as create_time, '-' as engine, '-' as coding, " +
+                "obj_description(cast(quote_ident(table_schema) || '.' || quote_ident(table_name) as regclass), 'pg_class') as remark " +
+                "from information_schema.tables " +
+                "where table_schema not in ('pg_catalog', 'information_schema') " +
+                "order by table_schema desc";
+        return columnInfoRepository.nativeQueryForVo(TableInfo.class, sql);
     }
 
     @Override
     public PageResult<TableInfo> getTables(String name, int[] startEnd) {
         // 使用预编译防止sql注入
-        String sql = "select table_name ,create_time , engine, table_collation, table_comment from information_schema.tables " +
-                "where table_schema = (select database()) " +
-                "and table_name like :table order by create_time desc";
-        Query query = em.createNativeQuery(sql);
-        query.setFirstResult(startEnd[0]);
-        query.setMaxResults(startEnd[1] - startEnd[0]);
-        query.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
-        List result = query.getResultList();
-        List<TableInfo> tableInfos = new ArrayList<>();
-        for (Object obj : result) {
-            Object[] arr = (Object[]) obj;
-            tableInfos.add(new TableInfo(arr[0], arr[1], arr[2], arr[3], ObjectUtil.isNotEmpty(arr[4]) ? arr[4] : "-"));
-        }
+        String sql = "select table_schema as schema_name, table_name, cast(null as timestamp) as create_time, '-' as engine, '-' as coding, " +
+                "obj_description(cast(quote_ident(table_schema) || '.' || quote_ident(table_name) as regclass), 'pg_class') as remark " +
+                "from information_schema.tables " +
+                "where table_schema not in ('pg_catalog', 'information_schema') and table_name like ? " +
+                "order by table_schema desc";
         String countSql = "select count(1) from information_schema.tables " +
-                "where table_schema = (select database()) and table_name like :table";
-        Query queryCount = em.createNativeQuery(countSql);
-        queryCount.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
-        BigInteger totalElements = (BigInteger) queryCount.getSingleResult();
-        return PageUtil.toPage(tableInfos, totalElements.longValue());
+                "where table_schema not in ('pg_catalog', 'information_schema') and table_name like ?";
+        // 这里不使用hutool参数转换的分页，改用jpa分页，第一个参数是页码，第二个参数是每页条数
+        Pageable pageable = PageRequest.of(startEnd[0], startEnd[1]);
+        Page<TableInfo> page = columnInfoRepository.nativeQueryForVo(TableInfo.class, countSql, sql, pageable, StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
+        return PageUtil.toPage(page);
     }
 
     @Override
@@ -108,23 +97,31 @@ public class GeneratorServiceImpl implements GeneratorService {
     @Override
     public List<ColumnInfo> query(String tableName) {
         // 使用预编译防止sql注入
-        String sql = "select column_name, is_nullable, data_type, column_comment, column_key, extra from information_schema.columns " +
-                "where table_name = ? and table_schema = (select database()) order by ordinal_position";
-        Query query = em.createNativeQuery(sql);
-        query.setParameter(1, tableName);
-        List result = query.getResultList();
+        String sql = "SELECT" +
+                "    t.relname AS table_name," +
+                "    c.column_name," +
+                "    c.data_type AS column_type," +
+                "    c.is_nullable," +
+                "    d.description AS remark," +
+                "    c.ordinal_position " +
+                "FROM pg_stat_user_tables t " +
+                "JOIN information_schema.columns c ON c.table_name = t.relname AND c.table_schema = t.schemaname " +
+                "LEFT JOIN pg_description d ON d.objoid = t.relid AND d.objsubid = c.ordinal_position " +
+                "WHERE t.relname = ? AND c.table_schema NOT IN ('pg_catalog', 'information_schema') " +
+                "ORDER BY c.ordinal_position";
+
+        List<Object[]> result = columnInfoRepository.nativeQuery(sql, tableName);
         List<ColumnInfo> columnInfos = new ArrayList<>();
-        for (Object obj : result) {
-            Object[] arr = (Object[]) obj;
+        for (Object[] arr : result) {
             columnInfos.add(
                     new ColumnInfo(
                             tableName,
-                            arr[0].toString(),
-                            "NO".equals(arr[1]),
                             arr[2].toString(),
-                            ObjectUtil.isNotNull(arr[3]) ? arr[3].toString() : null,
-                            ObjectUtil.isNotNull(arr[4]) ? arr[4].toString() : null,
-                            ObjectUtil.isNotNull(arr[5]) ? arr[5].toString() : null)
+                            "NO".equals(arr[1]),
+                            arr[4].toString(),
+                            arr[3] == null ? null : arr[3].toString(),
+                            null,
+                            null)
             );
         }
         return columnInfos;

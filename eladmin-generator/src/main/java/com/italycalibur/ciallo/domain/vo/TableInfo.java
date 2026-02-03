@@ -17,7 +17,6 @@ package com.italycalibur.ciallo.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,23 +26,40 @@ import lombok.NoArgsConstructor;
  * @date 2019-01-02
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class TableInfo {
+
+    @Schema(description = "模式名称")
+    private Object schemaName;
 
     @Schema(description = "表名称")
     private Object tableName;
 
+    /* pgsql 没有表创建时间 */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(description = "创建日期：yyyy-MM-dd HH:mm:ss")
     private Object createTime;
 
+    /* pgsql 没有存储引擎 */
     @Schema(description = "数据库引擎")
     private Object engine;
 
+    /* pgsql 的编码集与mysql不一样，默认都是C */
     @Schema(description = "编码集")
     private Object coding;
 
     @Schema(description = "备注")
     private Object remark;
+
+    /**
+     * 构造函数，null值用【-】代替
+     */
+    public TableInfo(Object schemaName, Object tableName, Object createTime, Object engine, Object coding, Object remark) {
+        this.schemaName = schemaName == null ? "-" : schemaName;
+        this.tableName = tableName == null ? "-" : tableName;
+        this.createTime = createTime == null ? "-" : createTime;
+        this.engine = engine == null ? "-" : engine;
+        this.coding = coding == null ? "-" : coding;
+        this.remark = remark == null ? "-" : remark;
+    }
 }
